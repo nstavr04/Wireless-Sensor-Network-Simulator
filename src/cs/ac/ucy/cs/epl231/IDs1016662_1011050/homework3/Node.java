@@ -1,3 +1,5 @@
+package cs.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
+
 import java.awt.*;
 
 // This class is using java's Point class. API:

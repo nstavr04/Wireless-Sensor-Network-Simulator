@@ -1,3 +1,5 @@
+package cs.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
+
 public class Menu {
 
     private int option;
@@ -29,7 +31,7 @@ public class Menu {
                 //
                 break;
             default:
-                System.out.println("Should never be inside this. Menu -> decideOperation");
+                System.out.println("Should never be inside this. cs.ac.ucy.cs.epl231.IDs1016662_1011050.homework3.Menu -> decideOperation");
                 break;
 
         }
