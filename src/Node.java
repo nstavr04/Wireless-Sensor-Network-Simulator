@@ -7,19 +7,22 @@ public class Node {
     private final int ID;
     private Point coordinates;
     private int temperature;
+    private boolean isFireStation;
 
 
-    public Node(int ID, Point coordinates, int temperature) {
+    public Node(int ID, Point coordinates, int temperature, boolean isFireStation) {
         this.ID = ID;
         this.coordinates = new Point(coordinates);  // Copy constructor
         this.temperature = temperature;
+        this.isFireStation = isFireStation;
     }
 
 
-    public Node(int ID, int coordinateX, int coordinateY, int temperature) {
+    public Node(int ID, int coordinateX, int coordinateY, int temperature, boolean isFireStation) {
         this.ID = ID;
         coordinates = new Point(coordinateX, coordinateY);
         this.temperature = temperature;
+        this.isFireStation = isFireStation;
     }
 
 
@@ -31,6 +34,7 @@ public class Node {
     /* ******************
     //SETTERS AND GETTERS
     ****************** */
+    // WE WILL NEVER NEED SOME OF THEM //
 
 
     public int getID() {
@@ -56,4 +60,13 @@ public class Node {
     public void setTemperature(int temperature) {
         this.temperature = temperature;
     }
+
+    public boolean isFireStation() {
+        return isFireStation;
+    }
+
+    public void setFireStation(boolean fireStation) {
+        isFireStation = fireStation;
+    }
+
 }
