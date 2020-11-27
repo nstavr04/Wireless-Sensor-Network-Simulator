@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class MainClass {
@@ -7,6 +9,40 @@ public class MainClass {
         Scanner scan = new Scanner(System.in);
         String optionStr;
 
+        final int D = Integer.parseInt(args[0]);
+
+        File newFile = new File(args[1]);
+        Scanner fileScan = null;
+        try {
+            fileScan = new Scanner(newFile);
+            while (fileScan.hasNextLine()) {
+
+
+                String id = fileScan.next();
+                String coordinateX = fileScan.next();
+                String coordinateY = fileScan.next();
+                int temperature = fileScan.nextInt();
+
+//                System.out.println(coordinateX);
+                coordinateX = coordinateX.substring(1, coordinateX.indexOf(","));
+//                System.out.println(coordinateX);
+//                System.out.println(coordinateY);
+                coordinateY = coordinateY.substring(0, coordinateY.indexOf("]"));
+//                System.out.println(coordinateY);
+
+
+
+                // HERE WE HAVE TO ENTER THIS POINT TO THE GRAPH OR SOMEWHERE. (STORE IT)
+//                Point
+
+
+                System.out.println(id + " " + coordinateX + " " + coordinateY + " " + temperature);
+            }
+            fileScan.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found Exception.");
+            e.printStackTrace();
+        }
 
 
         do {

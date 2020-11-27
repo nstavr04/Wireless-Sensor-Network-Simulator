@@ -3,7 +3,7 @@ public class Menu {
     private int option;
 
     public Menu() {
-        option = 6;
+        option = -1;
     }
 
 
