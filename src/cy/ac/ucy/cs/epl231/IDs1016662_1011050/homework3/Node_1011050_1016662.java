@@ -19,7 +19,7 @@ public class Node_1011050_1016662 {
         this.ID = ID;
         this.coordinates = new Point(coordinates);  // Copy constructor
         this.temperature = temperature;
-        this.isFireStation = isFireStation;
+//        this.isFireStation = isFireStation;
     }
 
 
