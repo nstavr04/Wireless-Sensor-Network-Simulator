@@ -72,8 +72,8 @@ public final class Menu_1011050_1016662 {
             case 5:
                 System.out.print("SELECT STARTING POINT: ");
                 int idstarts = scan.nextInt();
-                System.out.print("SELECT ENDING POINT: ");
-                int ends = scan.nextInt();
+//                System.out.print("SELECT ENDING POINT: ");
+//                int ends = scan.nextInt();
                 Node_1011050_1016662 nodeStart = null;
                 LinkedList<Node_1011050_1016662> list1 = graph.getHashTable()[Graph_1011050_1016662.hashFunction(idstarts,
                         graph.getLength())];
@@ -87,25 +87,23 @@ public final class Menu_1011050_1016662 {
                         break;
                     }
                 }
-                Node_1011050_1016662 nodeEnds = null;
-                LinkedList<Node_1011050_1016662> list2 = graph.getHashTable()[Graph_1011050_1016662.hashFunction(ends,
-                        graph.getLength())];
-                if (list2 == null) {
-                    System.out.println("THERE IS NO SUCH ID ");
-                    System.exit(0);
-                }
-                for (Node_1011050_1016662 inlist2 : list2) {
-                    if (inlist2.getID() == ends) {
-                        nodeEnds = inlist2;
-                        break;
-                    }
-                }
-                if (nodeStart.isStation() && nodeEnds.getTemperature() > 50) {
-                    System.out.println("FIRE ALARM !");
-
+//                Node_1011050_1016662 nodeEnds = null;
+//                LinkedList<Node_1011050_1016662> list2 = graph.getHashTable()[Graph_1011050_1016662.hashFunction(ends,
+//                        graph.getLength())];
+//                if (list2 == null) {
+//                    System.out.println("THERE IS NO SUCH ID ");
+//                    System.exit(0);
+//                }
+//                for (Node_1011050_1016662 inlist2 : list2) {
+//                    if (inlist2.getID() == ends) {
+//                        nodeEnds = inlist2;
+//                        break;
+//                    }
+//                }
+                if (nodeStart.isStation()) {
                     MST_1011050_1016662.DFS(graph.mst.getEdges(), idstarts);
                 } else {
-                    System.out.println("NO FIRE ALARM");
+                    System.out.println("Node must be a fire station");
                 }
                 break;
             case 6:

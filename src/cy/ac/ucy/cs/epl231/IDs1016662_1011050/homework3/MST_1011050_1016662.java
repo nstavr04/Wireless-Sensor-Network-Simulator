@@ -169,7 +169,7 @@ public class MST_1011050_1016662{
         ArrayList<Edge_1011050_1016662> listCopy = (ArrayList<Edge_1011050_1016662>) list.clone();
         stack.push(starts);
         int maxTemp=-1;
-        while (!stack.isEmpty()) {
+        while (!stack.isEmpty() && listCopy.size() != 0) {
 
             for (int i = 0; i < listCopy.size(); i++) {
                 if (listCopy.get(i).getNode1().getID() == stack.peek()) {
@@ -184,15 +184,25 @@ public class MST_1011050_1016662{
                 }
                 if (i == listCopy.size() - 1) {
 
+                    if(listCopy.get(i).getNode1().getTemperature() >= maxTemp)
+                        maxTemp = listCopy.get(i).getNode1().getTemperature();
+                    if(listCopy.get(i).getNode2().getTemperature() >= maxTemp )
+                        maxTemp = listCopy.get(i).getNode2().getTemperature();
+
                     stack.pop();
                 }
 
             }
 
+//            if (stack.peek() == starts)
+//                break;
+
         }
-        while (!stack.isEmpty()) {
-            System.out.println(stack.pop());
-        }
+//        while (!stack.isEmpty()) {
+//            System.out.println(stack.pop());
+//        }
+
+        System.out.println("Highest temperature: " + maxTemp);
 
     }
 
