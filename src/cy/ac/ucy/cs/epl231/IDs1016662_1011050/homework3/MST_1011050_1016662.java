@@ -158,20 +158,17 @@ public class MST_1011050_1016662{
     }
 
     /**
-     * This method is the one used to print the shortest path. Given a starting and
-     * an ending point , it finds the shortest path and prints the path from ending
-     * to starting.
      *
      * @param list   the mst tree
      * @param starts the starting point
-     * @param ends   the ending point
      *
      * @author mvasil17, nstavr04
      */
-    public static void DFS(ArrayList<Edge_1011050_1016662> list, int starts, int ends) {
+    public static void DFS(ArrayList<Edge_1011050_1016662> list, int starts) {
         Stack<Integer> stack = new Stack<>();
         ArrayList<Edge_1011050_1016662> listCopy = (ArrayList<Edge_1011050_1016662>) list.clone();
         stack.push(starts);
+        int maxTemp=-1;
         while (!stack.isEmpty()) {
 
             for (int i = 0; i < listCopy.size(); i++) {
@@ -186,12 +183,11 @@ public class MST_1011050_1016662{
                     break;
                 }
                 if (i == listCopy.size() - 1) {
+
                     stack.pop();
                 }
 
             }
-            if (stack.peek() == ends)
-                break;
 
         }
         while (!stack.isEmpty()) {
@@ -215,7 +211,7 @@ public class MST_1011050_1016662{
         for (int i = 0; i < mst.getEdges().size(); i++) {
             mst.getEdges().get(i).print();
         }
-        DFS(mst.getEdges(), 1, 12);
+        DFS(mst.getEdges(), 1);
     }
 
 }

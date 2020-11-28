@@ -80,7 +80,7 @@ public class MainClass_1011050_1016662 {
 
             Menu_1011050_1016662.setOption(option); // set option nat menu
 
-            Menu_1011050_1016662.decideOperation(graph, bfs); // Decide and execute operation
+            Menu_1011050_1016662.decideOperation(graph, bfs, "newFile"); // Decide and execute operation. newFile has to be args[1] ==================================================================================================================================
 
 
         } while (Menu_1011050_1016662.getOption() != 6);
