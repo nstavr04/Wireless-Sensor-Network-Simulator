@@ -1,4 +1,4 @@
-package cs.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
+package cy.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class MainClass {
     public static void main(String[] args) {
 
+
+
         Menu menu = new Menu();
         Scanner scan = new Scanner(System.in);
         String optionStr;
@@ -16,6 +18,8 @@ public class MainClass {
         final int D = Integer.parseInt(args[0]);
 
 
+
+/*
         // FILE READING. ASSUMES THAT FILE IS GIVEN AS A SECOND ARGUMENT
         File newFile = new File(args[1]);
         Scanner fileScan = null;
@@ -57,6 +61,8 @@ public class MainClass {
             e.printStackTrace();
             System.exit(-1);
         }
+
+ */
 
 
         do {

@@ -1,4 +1,4 @@
-package cs.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
+package cy.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
 
 public class Menu {
 
