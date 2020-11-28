@@ -24,7 +24,7 @@ public class BFS_1011050_1016662 {
      * @param graph the graph that the mst belongs to
      */
     public void PrintBfs(ArrayList<Edge_1011050_1016662> list, Node_1011050_1016662 start, Graph_1011050_1016662 graph) {
-        Node_1011050_1016662 array[] = null;
+        Node_1011050_1016662[] array = null;
         int count = 0;
         ArrayList<Edge_1011050_1016662> listCopy = (ArrayList<Edge_1011050_1016662>) list.clone();
 

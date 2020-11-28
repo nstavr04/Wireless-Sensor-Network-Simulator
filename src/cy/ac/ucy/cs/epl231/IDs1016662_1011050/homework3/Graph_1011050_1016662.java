@@ -180,6 +180,7 @@ public class Graph_1011050_1016662 {
             fin.useDelimiter("[^0-9]+"); // keep only digits.
             while (fin.hasNext()) {
                 Node_1011050_1016662 node = new Node_1011050_1016662(fin.nextInt(), fin.nextInt(), fin.nextInt(), fin.nextInt());
+//                System.out.println(node.getID() + " " +node.getCoordinateX() + " " + node.getCoordinateY() + " " + node.getTemperature());
                 insertNode(node);
             }
         } catch (Exception e) {
@@ -193,6 +194,7 @@ public class Graph_1011050_1016662 {
 //			//}
 //			System.out.println();
 //		}
+
     }
 
     /**

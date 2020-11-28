@@ -1,22 +1,23 @@
 package cy.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.io.*;
 
 // Input at the commnd line must take first D, then FileName
-public class MainClass {
+public class MainClass_1011050_1016662 {
     public static void main(String[] args) {
 
+        Graph_1011050_1016662 graph = new Graph_1011050_1016662(5, Integer.parseInt(args[0]));
 
+        graph.readNodes(args[1]);       // Insert all the nodes from the file
 
-        Menu menu = new Menu();
         Scanner scan = new Scanner(System.in);
         String optionStr;
 
+        BFS_1011050_1016662 bfs = new BFS_1011050_1016662();
+        int id;
 
         final int D = Integer.parseInt(args[0]);
-
 
 
 /*
@@ -67,21 +68,22 @@ public class MainClass {
 
         do {
 
-            menu.printOptions();
+            Menu_1011050_1016662.printOptions();
             optionStr = scan.next();
 
-            while (optionStr.length() != 1 || optionStr.charAt(0) < '0' || optionStr.charAt(0) > '6') {     // check if user gave a right answer
+            while (optionStr.length() != 1 || optionStr.charAt(0) < '1' || optionStr.charAt(0) > '6') {     // check if user gave a right answer
                 System.out.println("Please enter a valid number. Choose between 1-6");
                 optionStr = scan.next();
             }
 
             int option = Integer.parseInt(optionStr);
 
-            menu.setOption(option); // set option nat menu
+            Menu_1011050_1016662.setOption(option); // set option nat menu
 
-            menu.decideOperation(); // Decide and execute operation
+            Menu_1011050_1016662.decideOperation(graph, bfs); // Decide and execute operation
 
-        } while (menu.getOption() != 6);
+
+        } while (Menu_1011050_1016662.getOption() != 6);
 
         System.out.println("Program terminated");
         return;

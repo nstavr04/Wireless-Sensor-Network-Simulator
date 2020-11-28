@@ -19,6 +19,7 @@ public class Node_1011050_1016662 {
         this.ID = ID;
         this.coordinates = new Point(coordinates);  // Copy constructor
         this.temperature = temperature;
+        neighbors = new LinkedList<Node_1011050_1016662>();
 //        this.isFireStation = isFireStation;
     }
 
@@ -27,6 +28,7 @@ public class Node_1011050_1016662 {
         this.ID = ID;
         coordinates = new Point(coordinateX, coordinateY);
         this.temperature = temperature;
+        neighbors = new LinkedList<Node_1011050_1016662>();
     }
 
 

@@ -50,19 +50,18 @@ public class MST_1011050_1016662{
                 count++;
 
             }
-        boolean visited[] = new boolean[graph.getVertices()];
+        boolean[] visited = new boolean[graph.getVertices()];
 
         for (int i = 0; i < graph.getVertices(); i++)
             visited[i] = false;
 
-        int closest[] = new int[graph.getVertices()];
+        int[] closest = new int[graph.getVertices()];
         for (int i = 0; i < graph.getVertices(); i++)
             closest[i] = -1;
 
-        double distance[] = new double[graph.getVertices()];
-        for (int i = 0; i < distance.length; i++) {
-            distance[i] = Double.MAX_VALUE;// initializing to infinity
-        }
+        double[] distance = new double[graph.getVertices()];
+        // initializing to infinity
+        Arrays.fill(distance, Double.MAX_VALUE);    // A method to initialize all the distance table
 
         int ind = 0;
         visited[ind] = true;

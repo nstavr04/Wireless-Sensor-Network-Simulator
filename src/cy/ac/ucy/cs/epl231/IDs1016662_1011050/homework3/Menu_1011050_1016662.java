@@ -1,22 +1,47 @@
 package cy.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
 
-public class Menu {
+import java.util.LinkedList;
+import java.util.Scanner;
 
-    private int option;
+public final class Menu_1011050_1016662 {
 
-    public Menu() {
+    private static int option;
+
+    static Scanner scan = new Scanner(System.in);
+
+    public Menu_1011050_1016662() {
         option = -1;
     }
 
 
     // The option cant be something else. It is always 1-6. (we check it at main)
-    public void decideOperation() {
+    public static void decideOperation(Graph_1011050_1016662 graph, BFS_1011050_1016662 bfs) {
         switch (option) {
             case 1:
-                //
+
+                graph.createMST();
+                System.out.println("MST CALCULATED!");
+
                 break;
             case 2:
-                //
+
+
+//                System.out.print("SELECT STARTING POINT: ");
+//                id = scan.nextInt();
+                int id=2;
+                Node_1011050_1016662 node = null;
+                LinkedList<Node_1011050_1016662> list = graph.getHashTable()[Graph_1011050_1016662.hashFunction(id, graph.getLength())];
+                if (list == null) {
+                    System.out.println("THERE IS NO SUCH ID");
+                    System.exit(0);
+                }
+                for (Node_1011050_1016662 inlist : list) {
+                    if (inlist.getID() == id) {
+                        node = inlist;
+                        break;
+                    }
+                }
+                bfs.PrintBfs(graph.mst.getEdges(), node, graph);
                 break;
             case 3:
                 //
@@ -39,17 +64,17 @@ public class Menu {
 
 
     // Getter method
-    public int getOption() {
+    public static int getOption() {
         return option;
     }
 
     // Setter method
-    public void setOption(int option) {
-        this.option = option;
+    public static void setOption(int option) {
+        Menu_1011050_1016662.option = option;
     }
 
 
-    public void printOptions() {
+    public static void printOptions() {
         System.out.println("1) Ypoloogismos elaxistou gennitorikou grafou");
         System.out.println("2) Ektiposi (kai oxi ipologismos) tou elaxistou genitorikou dentrou tou grafou");
         System.out.println("3) Isagogi neou komvou(ID, coordinates, temperature)");
