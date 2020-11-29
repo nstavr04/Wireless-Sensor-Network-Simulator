@@ -5,19 +5,16 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * This method is used to create the second option of the menu that prints all
- * the MST tree using the breadth first search. This object uses only one class
+ * This method is used for the second option of the menu. Prints all
+ * the MST tree using the BFS algorithm. This object uses only one class
  * that implement the printing of the tree given as a parameter.
  *
- * @since 30/04/20
- * @author Ioanna Theophilou (itheop02)
- * @version 1
+ * @author mvasil17, nstavr04
  */
 public class BFS_1011050_1016662 {
     /**
-     * This is the only method of this class. This method prints the given tree
-     * using the BFS method. This method uses a queue structure to save the values
-     * needed.
+     * This method prints the given tree using the BFS algorithm.
+     * It uses a queue.
      *
      * @param list  the list that represents the mst tree
      * @param start the starting node
@@ -25,10 +22,9 @@ public class BFS_1011050_1016662 {
      */
     public void PrintBfs(ArrayList<Edge_1011050_1016662> list, Node_1011050_1016662 start, Graph_1011050_1016662 graph) {
         Node_1011050_1016662[] array = null;
-        int count = 0;
         ArrayList<Edge_1011050_1016662> listCopy = (ArrayList<Edge_1011050_1016662>) list.clone();
 
-        Queue<Integer> queue = new LinkedList<>();// tick
+        Queue<Integer> queue = new LinkedList<>();
         queue.add(start.getID());
         queue.add(-1);
         while (!queue.isEmpty()) {
@@ -41,46 +37,20 @@ public class BFS_1011050_1016662 {
             }
             System.out.print(v + "  ");
             int length = listCopy.size();
-            int c = 0;
+            int counter = 0;
             for (int i = 0; i < length; i++) {
-                if (listCopy.get(c).getNode1().getID() == v) {
-                    queue.add(listCopy.get(c).getNode2().getID());
-                    listCopy.remove(listCopy.get(c));
-                    c--;
-                } else if (listCopy.get(c).getNode2().getID() == v) {
-                    queue.add(listCopy.get(c).getNode1().getID());
-                    listCopy.remove(listCopy.get(c));
-                    c--;
+                if (listCopy.get(counter).getNode1().getID() == v) {
+                    queue.add(listCopy.get(counter).getNode2().getID());
+                    listCopy.remove(listCopy.get(counter));
+                    counter--;
+                } else if (listCopy.get(counter).getNode2().getID() == v) {
+                    queue.add(listCopy.get(counter).getNode1().getID());
+                    listCopy.remove(listCopy.get(counter));
+                    counter--;
                 }
-                c++;
+                counter++;
             }
         }
 
     }
-
-    /**
-     * This method was only used to check results
-     *
-     * @param args
-     */
-    public static void main(String args[]) {
-        Graph_1011050_1016662 graph = new Graph_1011050_1016662(5, 500);
-        graph.readNodes(args[0]);
-        // System.out.println(graph.vertices);
-        // System.out.println(graph.edges);
-        graph.createMST();
-        BFS_1011050_1016662 bfs = new BFS_1011050_1016662();
-        int id = 2;
-        Node_1011050_1016662 node = null;
-        LinkedList<Node_1011050_1016662> list = graph.getHashTable()[Graph_1011050_1016662.hashFunction(id, graph.getLength())];
-        for (Node_1011050_1016662 inlist : list) {
-            if (inlist.getID() == id) {
-                node = inlist;
-                break;
-            }
-        }
-
-        bfs.PrintBfs(graph.mst.getEdges(), node, graph);
-    }
-
 }

@@ -5,17 +5,13 @@ import java.lang.*;
 import java.io.*;
 
 /**
- * This class is used to create the mst of a graph given . This i a helping
- * class .
+ * This class is used to create the mst of a graph given.
  *
  * @author mvasil17, nstavr04
- *
  */
-public class MST_1011050_1016662{
+public class MST_1011050_1016662 {
     /**
-     * This is the list of edges that represents the mst tree.
-     *
-     * @author mvasil17, nstavr04
+     * This is the list of the edges that represent the mst tree.
      */
     private ArrayList<Edge_1011050_1016662> edges = new ArrayList<Edge_1011050_1016662>();
 
@@ -23,152 +19,81 @@ public class MST_1011050_1016662{
      * This is the constructor of the mst tree.
      *
      * @param graph whos mst is going to be created
-     *
-     * @author Ioanna Theophilou
+     * @author mvasil17, nstavr04
      */
     public MST_1011050_1016662(Graph_1011050_1016662 graph) {
-        Prim(graph);
+        Prim(graph);    //Run Prim's algorithm to construct the MST tree
     }
 
     /**
      * This is the algorithm used to create the mst tree.
-     *
+     * <p>
      * Mst tree is created using the prim algorithm.
      *
      * @param graph the graph given as parameter
-     *
-     * @author Ioanna Theophilou
+     * @author mvasil17, nstavr04
      */
-    public void Prim(Graph_1011050_1016662 graph) {
+    private void Prim(Graph_1011050_1016662 graph) {
 
-        Node_1011050_1016662 ids[] = new Node_1011050_1016662[graph.getVertices()];
-        int count = 0;
-        for (int i = 0; i < graph.getLength(); i++)
+        int counter = 0;
+        Node_1011050_1016662 idsTable[] = new Node_1011050_1016662[graph.getVertices()];
+
+        for (int i = 0; i < graph.getLength(); i++) {
             for (Node_1011050_1016662 node : graph.getHashTable()[i]) {
-
-                ids[count] = node;
-                count++;
-
+                idsTable[counter] = node;
+                counter++;
             }
+        }
+
         boolean[] visited = new boolean[graph.getVertices()];
 
-        for (int i = 0; i < graph.getVertices(); i++)
-            visited[i] = false;
+        Arrays.fill(visited, false);
 
-        int[] closest = new int[graph.getVertices()];
-        for (int i = 0; i < graph.getVertices(); i++)
-            closest[i] = -1;
+        int[] closestD = new int[graph.getVertices()];
+
+        Arrays.fill(closestD, -1);    // A method to initialize all the distance table
 
         double[] distance = new double[graph.getVertices()];
-        // initializing to infinity
-        Arrays.fill(distance, Double.MAX_VALUE);    // A method to initialize all the distance table
 
-        int ind = 0;
-        visited[ind] = true;
+        Arrays.fill(distance, Double.MAX_VALUE);    // A method to initialize all the distance table to infinity
+
+        int index = 0;
+        visited[index] = true;
         Edge_1011050_1016662 edge = null;
+
         for (int i = 0; i < graph.getVertices(); i++) {
-            Node_1011050_1016662 v = ids[ind];
+            Node_1011050_1016662 v = idsTable[index];
             for (Node_1011050_1016662 w : v.getNeighbors()) {
-                int pos = position(w, ids);
+                int pos = position(w, idsTable);
                 if (pos == -1)
                     continue;
                 edge = new Edge_1011050_1016662(v, w);
                 if (edge.getWeight() < distance[pos]) {
                     distance[pos] = (int) edge.getWeight();
-                    closest[pos] = ind;
+                    closestD[pos] = index;
                 }
 
             }
-            ind = minVertex(graph, visited, distance);
-            if (ind == -1)
+            index = minVertex(graph, visited, distance);
+            if (index == -1)
                 break;
-            visited[ind] = true;
-            edges.add(new Edge_1011050_1016662(v, ids[ind]));
+            visited[index] = true;
+            edges.add(new Edge_1011050_1016662(v, idsTable[index]));
         }
 
     }
 
-    /**
-     * This is a helpful method that given a node, and the array finds the place
-     * that the node is in the array given as a parameter.
-     *
-     * @param findMe the node to be found
-     * @param id     the array that has the node
-     * @return the position of node in the id array
-     *
-     * @author mvasil17, nstavr04
-     */
-    public static int position(Node_1011050_1016662 findMe, Node_1011050_1016662 id[]) {
-        if (findMe != null && id != null)
-            for (int i = 0; i < id.length; i++) {
-                if (id[i] != null)
-                    if (findMe.getID() == id[i].getID()) {
-
-                        return i;
-                    }
-            }
-        return -1;
-    }
 
     /**
-     * This is the getter method that returns the list of edges meaning the mst
-     * tree.
-     *
-     * @return the mst tree
-     *
-     * @author mvasil17, nstavr04
-     */
-    public ArrayList<Edge_1011050_1016662> getEdges() {
-        return edges;
-    }
-
-    /**
-     * This is a setter method that sets the mst.
-     *
-     * @author mvasil17, nstavr04
-     * @param edges
-     */
-    public void setEdges(ArrayList<Edge_1011050_1016662> edges) {
-        this.edges = edges;
-    }
-
-    /**
-     * This is the method that returns the minimum among all distances. It is used
-     * by the prim algorithm.
-     *
-     * @param graph
-     * @param visited
-     * @param distance
-     *
-     * @author mvasil17, nstavr04
-     * @return
-     */
-    public int minVertex(Graph_1011050_1016662 graph, boolean visited[], double[] distance) {
-        int min = -1;
-        double minimum = Double.MAX_VALUE;
-        for (int i = 0; i < graph.getVertices(); i++) {
-            if (visited[i] == true)
-                continue;// skip nodes already in MST
-            if (distance[i] < minimum) {
-                min = i;
-                minimum = distance[i];
-            }
-        }
-        return min; // Return the minimum among all distances
-    }
-
-    /**
-     *
      * @param list   the mst tree
      * @param starts the starting point
-     *
      * @author mvasil17, nstavr04
      */
     public static void DFS(ArrayList<Edge_1011050_1016662> list, int starts) {
         Stack<Integer> stack = new Stack<>();
         ArrayList<Edge_1011050_1016662> listCopy = (ArrayList<Edge_1011050_1016662>) list.clone();
         stack.push(starts);
-        int maxTemp=-1;
+        int maxTemp = -1;
         while (!stack.isEmpty() && listCopy.size() != 0) {
 
             for (int i = 0; i < listCopy.size(); i++) {
@@ -184,9 +109,9 @@ public class MST_1011050_1016662{
                 }
                 if (i == listCopy.size() - 1) {
 
-                    if(listCopy.get(i).getNode1().getTemperature() >= maxTemp)
+                    if (listCopy.get(i).getNode1().getTemperature() >= maxTemp)
                         maxTemp = listCopy.get(i).getNode1().getTemperature();
-                    if(listCopy.get(i).getNode2().getTemperature() >= maxTemp )
+                    if (listCopy.get(i).getNode2().getTemperature() >= maxTemp)
                         maxTemp = listCopy.get(i).getNode2().getTemperature();
 
                     stack.pop();
@@ -194,34 +119,73 @@ public class MST_1011050_1016662{
 
             }
 
-//            if (stack.peek() == starts)
-//                break;
-
         }
-//        while (!stack.isEmpty()) {
-//            System.out.println(stack.pop());
-//        }
-
         System.out.println("Highest temperature: " + maxTemp);
+    }
 
+
+    /**
+     * This is a helpful method that given a node, and the array findexs the place
+     * that the node is in the array given as a parameter.
+     *
+     * @param NodeTBF the node to be found
+     * @param id     the array that has the node
+     * @return the position of node in the id array
+     * @author mvasil17, nstavr04
+     */
+    private static int position(Node_1011050_1016662 NodeTBF, Node_1011050_1016662 id[]) {
+        if (NodeTBF != null && id != null)
+            for (int i = 0; i < id.length; i++) {
+                if (id[i] != null)
+                    if (NodeTBF.getID() == id[i].getID()) {
+
+                        return i;
+                    }
+            }
+        return -1;
     }
 
     /**
-     * This method was only used to check resaults
+     * This is a setter method that sets the mst.
      *
-     * @param args
-     *
+     * @param edges
      * @author mvasil17, nstavr04
      */
-    public static void main(String args[]) {
-        Graph_1011050_1016662 graph = new Graph_1011050_1016662(5, 500);
-        graph.readNodes(args[0]);
-        MST_1011050_1016662 mst = new MST_1011050_1016662(graph);
-
-        for (int i = 0; i < mst.getEdges().size(); i++) {
-            mst.getEdges().get(i).print();
-        }
-        DFS(mst.getEdges(), 1);
+    public void setEdges(ArrayList<Edge_1011050_1016662> edges) {
+        this.edges = edges;
     }
 
+    /**
+     * This is the getter method that returns the list of edges meaning the mst
+     * tree.
+     *
+     * @return the mst tree
+     * @author mvasil17, nstavr04
+     */
+    public ArrayList<Edge_1011050_1016662> getEdges() {
+        return edges;
+    }
+
+    /**
+     * This method returns the minimum distance. (Part of Prim)
+     *
+     * @param graph
+     * @param visited
+     * @param distance
+     * @return min The minimum diastance
+     * @author mvasil17, nstavr04
+     */
+    public int minVertex(Graph_1011050_1016662 graph, boolean visited[], double[] distance) {
+        int min = -1;
+        double minimum = Double.MAX_VALUE;
+        for (int i = 0; i < graph.getVertices(); i++) {
+            if (visited[i] == true)
+                continue;   // Skip nodes that are already in ours MST
+            if (distance[i] < minimum) {
+                min = i;
+                minimum = distance[i];
+            }
+        }
+        return min; // Return the minimum distance
+    }
 }
