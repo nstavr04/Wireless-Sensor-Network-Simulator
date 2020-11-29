@@ -7,6 +7,7 @@ import java.io.*;
 public class MainClass_1011050_1016662 {
     public static void main(String[] args) {
 
+        //Hash table has a starting size of 5
         Graph_1011050_1016662 graph = new Graph_1011050_1016662(5, Integer.parseInt(args[0]));
 
         graph.readNodes(args[1]);       // Insert all the nodes from the file
@@ -15,11 +16,6 @@ public class MainClass_1011050_1016662 {
         String optionStr;
 
         BFS_1011050_1016662 bfs = new BFS_1011050_1016662();
-        int id;
-
-        final int D = Integer.parseInt(args[0]);
-
-
 /*
         // FILE READING. ASSUMES THAT FILE IS GIVEN AS A SECOND ARGUMENT
         File newFile = new File(args[1]);
@@ -62,10 +58,7 @@ public class MainClass_1011050_1016662 {
             e.printStackTrace();
             System.exit(-1);
         }
-
  */
-
-
         do {
 
             Menu_1011050_1016662.printOptions();
@@ -78,14 +71,15 @@ public class MainClass_1011050_1016662 {
 
             int option = Integer.parseInt(optionStr);
 
-            Menu_1011050_1016662.setOption(option); // set option nat menu
+            // set option at menu
+            Menu_1011050_1016662.setOption(option);
 
-            Menu_1011050_1016662.decideOperation(graph, bfs, "newFile"); // Decide and execute operation. newFile has to be args[1] ==================================================================================================================================
+            // deciding the operation
+            Menu_1011050_1016662.decideOperation(graph, bfs, args[1]);
 
 
         } while (Menu_1011050_1016662.getOption() != 6);
 
         System.out.println("Program terminated");
-        return;
     }
 }
