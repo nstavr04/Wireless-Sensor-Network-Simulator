@@ -82,6 +82,7 @@ public final class Menu_1011050_1016662 {
 
                 graph.removeNode(nodeDel);
                 graph.createMST();
+
                 break;
 
             case 5:

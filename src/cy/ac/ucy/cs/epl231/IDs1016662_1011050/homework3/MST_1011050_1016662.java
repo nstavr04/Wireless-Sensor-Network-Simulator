@@ -99,20 +99,28 @@ public class MST_1011050_1016662 {
             for (int i = 0; i < listCopy.size(); i++) {
                 if (listCopy.get(i).getNode1().getID() == stack.peek()) {
                     stack.push(listCopy.get(i).getNode2().getID());
+
+                    if (listCopy.get(i).getNode2().getTemperature() >= maxTemp)
+                        maxTemp = listCopy.get(i).getNode2().getTemperature();
+
                     listCopy.remove(listCopy.get(i));
                     break;
                 }
                 if (listCopy.get(i).getNode2().getID() == stack.peek()) {
                     stack.push(listCopy.get(i).getNode1().getID());
+
+                    if (listCopy.get(i).getNode1().getTemperature() >= maxTemp)
+                        maxTemp = listCopy.get(i).getNode1().getTemperature();
+
                     listCopy.remove(listCopy.get(i));
                     break;
                 }
                 if (i == listCopy.size() - 1) {
 
-                    if (listCopy.get(i).getNode1().getTemperature() >= maxTemp)
-                        maxTemp = listCopy.get(i).getNode1().getTemperature();
-                    if (listCopy.get(i).getNode2().getTemperature() >= maxTemp)
-                        maxTemp = listCopy.get(i).getNode2().getTemperature();
+//                    if (listCopy.get(i).getNode1().getTemperature() >= maxTemp)
+//                        maxTemp = listCopy.get(i).getNode1().getTemperature();
+//                    if (listCopy.get(i).getNode2().getTemperature() >= maxTemp)
+//                        maxTemp = listCopy.get(i).getNode2().getTemperature();
 
                     stack.pop();
                 }
