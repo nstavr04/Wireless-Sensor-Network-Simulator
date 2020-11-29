@@ -89,11 +89,6 @@ public final class Menu_1011050_1016662 {
                 System.out.print("Dose ID pirosvestikou kentrou: ");
                 int idFireS = scan.nextInt();
 
-                if(idFireS < 1 || idFireS > 9){
-                    System.out.println("To ID den einai pirosvestikos stathmos.");
-                    return;
-                }
-
                 list = graph.getHashTable()[Graph_1011050_1016662.hashFunction(idFireS, graph.getLength())];
                 Node_1011050_1016662 nodeFireS = null;
 
@@ -111,6 +106,11 @@ public final class Menu_1011050_1016662 {
 
                 if(nodeFireS == null){
                     System.out.println("This ID does not exist");
+                    return;
+                }
+
+                if(!nodeFireS.isStation()){
+                    System.out.println("To ID den einai pirosvestikos stathmos.");
                     return;
                 }
 

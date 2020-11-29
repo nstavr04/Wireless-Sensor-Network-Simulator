@@ -1,9 +1,7 @@
 package cy.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
 
 /**
- * This class represents an edge of two nodes. Each edge created has two nodes
- * and the weight between them. The weight between them is calculated by the
- * constructor.
+ * This class is representing the edges that connect two nodes together and their weight
  *
  * @author mvasil17, nstavr04
  *
@@ -44,10 +42,6 @@ public class Edge_1011050_1016662 {
 
     public void setNode2(Node_1011050_1016662 node2) {
         this.node2 = node2;
-    }
-
-    public void print() {
-        System.out.println("NODE: " + node1.getID() + " => " + node2.getID() + " NODE");
     }
 }
 

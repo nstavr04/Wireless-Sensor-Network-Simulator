@@ -40,7 +40,7 @@ public class Graph_1011050_1016662 {
      * Constructor of the graph.
      *
      * @param length the length of the graph.
-     * @param dOfUser      the distance set by the user.
+     * @param dOfUser the distance set by the user.
      *
      * @author mvasil17, nstavr04
      */
@@ -94,6 +94,7 @@ public class Graph_1011050_1016662 {
                     edges++;
                 }
             }
+        //Rehashing if a linked list of any hash table slot goes beyond 20 elements
         if (hashTable[hashFunction(node.getID(), length)].size() >= 20)
             rehash();
     }
@@ -233,9 +234,6 @@ public class Graph_1011050_1016662 {
         this.d = d;
     }
 
-
-
-
     /**
      * Updates the file and enters back the new nodes. (user input file)
      *
@@ -249,9 +247,8 @@ public class Graph_1011050_1016662 {
                 for (int j = 0; j < hashTable[i].size(); j++) {
                     if (hashTable[i].get(j) == null)
                         continue;
-                    bw.write(hashTable[i].get(j).getID() + "\t" + "(" + hashTable[i].get(j).getCoordinateX() + ","
-                            + hashTable[i].get(j).getCoordinateY() + ")" + "\t" + hashTable[i].get(j).getTemperature());
-                    bw.newLine();
+                    bw.write(hashTable[i].get(j).getID() + "\t" + "[" + hashTable[i].get(j).getCoordinateX() + ", "
+                            + hashTable[i].get(j).getCoordinateY() + "]" + "\t" + hashTable[i].get(j).getTemperature() + "\n");
                 }
             }
         } catch (IOException e) {
@@ -267,7 +264,7 @@ public class Graph_1011050_1016662 {
      */
     private void rehash() {
         this.length *= 10;
-        LinkedList<Node_1011050_1016662> hashTemp[] = hashTable;
+        LinkedList<Node_1011050_1016662>[] hashTemp = hashTable;
         hashTable = new LinkedList[length];
         for (int i = 0; i < length; i++)
             hashTable[i] = new LinkedList<Node_1011050_1016662>();

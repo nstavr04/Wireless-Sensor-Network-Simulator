@@ -10,7 +10,6 @@ public class Node_1011050_1016662 {
     private final int ID;
     private Point coordinates;
     private int temperature;
-//    private boolean isFireStation;
 
     private LinkedList<Node_1011050_1016662> neighbors;
 
@@ -20,7 +19,6 @@ public class Node_1011050_1016662 {
         this.coordinates = new Point(coordinates);  // Copy constructor
         this.temperature = temperature;
         neighbors = new LinkedList<Node_1011050_1016662>();
-//        this.isFireStation = isFireStation;
     }
 
 
@@ -43,10 +41,7 @@ public class Node_1011050_1016662 {
      * @return true if node is station
      */
     public boolean isStation() {
-        if (this.ID >= 1 && this.ID <= 9) {
-            return true;
-        }
-        return false;
+        return this.ID >= 1 && this.ID <= 9;
     }
 
     /* ******************
@@ -83,13 +78,5 @@ public class Node_1011050_1016662 {
     public void setTemperature(int temperature) {
         this.temperature = temperature;
     }
-
-//    public boolean isFireStation() {
-//        return isFireStation;
-//    }
-//
-//    public void setFireStation(boolean fireStation) {
-//        isFireStation = fireStation;
-//    }
 
 }
