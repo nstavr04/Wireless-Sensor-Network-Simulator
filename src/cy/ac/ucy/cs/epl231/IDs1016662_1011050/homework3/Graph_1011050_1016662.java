@@ -95,7 +95,7 @@ public class Graph_1011050_1016662 {
                 }
             }
         //Rehashing if a linked list of any hash table slot goes beyond 20 elements
-        if (hashTable[hashFunction(node.getID(), length)].size() >= 20)
+        if (hashTable[hashFunction(node.getID(), length)].size() > 20)
             rehash();
     }
 
