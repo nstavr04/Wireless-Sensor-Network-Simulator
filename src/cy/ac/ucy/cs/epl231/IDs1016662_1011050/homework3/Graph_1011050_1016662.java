@@ -116,7 +116,7 @@ public class Graph_1011050_1016662 {
                 }
             }
         }
-        LinkedList<Node_1011050_1016662> listCopy2 = (LinkedList<Node_1011050_1016662>) hashTable[hashFunction(removeNode.getID(), length)];
+        LinkedList<Node_1011050_1016662> listCopy2 = hashTable[hashFunction(removeNode.getID(), length)];
         for (int i = 0; i < listCopy2.size(); i++) {
             if (removeNode == listCopy2.get(i)) {
                 hashTable[hashFunction(removeNode.getID(), length)].remove(i);
