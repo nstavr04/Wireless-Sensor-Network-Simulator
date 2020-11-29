@@ -22,7 +22,7 @@ public final class Menu_1011050_1016662 {
         switch (option) {
             case 1:
                 graph.createMST();
-                System.out.println("To elaxisto gennitoriko dentro.");
+                System.out.println("To elaxisto gennitoriko dentro tou grafou ipologistike epitixos.");
                 break;
 
             case 2:
