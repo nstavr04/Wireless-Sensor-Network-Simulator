@@ -5,10 +5,10 @@ import java.lang.*;;
 
 /**
  * This class is used to create the mst of a graph given.
- *
  * @author mvasil17, nstavr04
  */
 public class MST_1011050_1016662 {
+
     /**
      * This is the list of the edges that represent the mst tree.
      */
@@ -106,7 +106,7 @@ public class MST_1011050_1016662 {
         Stack<Integer> stack = new Stack<>();
         ArrayList<Edge_1011050_1016662> listCopy = (ArrayList<Edge_1011050_1016662>) list.clone();
         stack.push(starts);
-        int maxTemp = -1;
+        int maxTemp = Integer.MIN_VALUE;
         while (!stack.isEmpty() && listCopy.size() != 0) {
 
             for (int i = 0; i < listCopy.size(); i++) {

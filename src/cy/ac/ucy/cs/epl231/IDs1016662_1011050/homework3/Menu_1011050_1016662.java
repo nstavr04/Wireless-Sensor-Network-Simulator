@@ -46,7 +46,7 @@ public final class Menu_1011050_1016662 {
                 }
 
                 //Doing bfs starting from the node with ID 02
-                bfs.PrintBfs(graph.mst.getEdges(), node02, graph);
+                bfs.PrintBfs(graph.mst.getEdges(), node02);
                 break;
 
             case 3:

@@ -176,7 +176,7 @@ public class Graph_1011050_1016662 {
     /**
      * Setter method.
      *
-     * Creates a list that indicates the hashTable.
+     * Creates a list that represents the hashTable.
      *
      * @author mvasil17, nstavr04
      */

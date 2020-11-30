@@ -18,15 +18,13 @@ public class BFS_1011050_1016662 {
      *
      * @param list  the list that represents the mst tree
      * @param start the starting node
-     * @param graph the graph that the mst belongs to
      */
-    public void PrintBfs(ArrayList<Edge_1011050_1016662> list, Node_1011050_1016662 start, Graph_1011050_1016662 graph) {
-        Node_1011050_1016662[] array = null;
+    public void PrintBfs(ArrayList<Edge_1011050_1016662> list, Node_1011050_1016662 start) {
         ArrayList<Edge_1011050_1016662> listCopy = (ArrayList<Edge_1011050_1016662>) list.clone();
 
         Queue<Integer> queue = new LinkedList<>();
         queue.add(start.getID());
-        queue.add(-1);
+        queue.add(-1);  // used to know when to add a new line
         while (!queue.isEmpty()) {
             int v = queue.poll();
             if (v == -1) {
