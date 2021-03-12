@@ -1,4 +1,3 @@
-package cy.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
 
 /**
  * This class is representing the edges that connect two nodes together and their weight
@@ -6,15 +5,15 @@ package cy.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
  * @author mvasil17, nstavr04
  *
  */
-public class Edge_1011050_1016662 {
+public class Edge {
 
     private double weight;
 
-    private Node_1011050_1016662 node1;
+    private Node node1;
 
-    private Node_1011050_1016662 node2;
+    private Node node2;
 
-    public Edge_1011050_1016662(Node_1011050_1016662 node1, Node_1011050_1016662 node2) {
+    public Edge(Node node1, Node node2) {
         this.node1 = node1;
         this.node2 = node2;
         weight = node1.getDistance(node2);
@@ -28,19 +27,19 @@ public class Edge_1011050_1016662 {
         this.weight = weight;
     }
 
-    public Node_1011050_1016662 getNode1() {
+    public Node getNode1() {
         return node1;
     }
 
-    public void setNode1(Node_1011050_1016662 node1) {
+    public void setNode1(Node node1) {
         this.node1 = node1;
     }
 
-    public Node_1011050_1016662 getNode2() {
+    public Node getNode2() {
         return node2;
     }
 
-    public void setNode2(Node_1011050_1016662 node2) {
+    public void setNode2(Node node2) {
         this.node2 = node2;
     }
 }
