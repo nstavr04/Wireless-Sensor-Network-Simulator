@@ -1,39 +1,38 @@
-package cy.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
 
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public final class Menu_1011050_1016662 {
+public final class Menu {
 
     private static int option;
 
     static Scanner scan = new Scanner(System.in);
 
-    public Menu_1011050_1016662() {
+    public Menu() {
         option = -1;
     }
 
 
     // The option cant be something else. It is always 1-6. (we check it at main)
-    public static void decideOperation(Graph_1011050_1016662 graph, BFS_1011050_1016662 bfs, String fileName) {
+    public static void decideOperation(Graph graph, BFS bfs, String fileName) {
 
-        LinkedList<Node_1011050_1016662> list;
+        LinkedList<Node> list;
 
         switch (option) {
             case 1:
                 graph.createMST();
-                System.out.println("To elaxisto gennitoriko dentro tou grafou ipologistike epitixos.");
+                System.out.println("The MST has been calculated succesfully.");
                 break;
 
             case 2:
-                Node_1011050_1016662 node02 = null;
-                list = graph.getHashTable()[Graph_1011050_1016662.hashFunction(2, graph.getLength())];
+                Node node02 = null;
+                list = graph.getHashTable()[Graph.hashFunction(2, graph.getLength())];
 
                 if (list == null) {
-                    System.out.println("To pirosvestiko kentro me ID 02 den iparxei sto WSNS");
+                    System.out.println("Fire Department with ID 02 does not exist WSNS");
                     return;
                 }
-                for (Node_1011050_1016662 listNode : list) {
+                for (Node listNode : list) {
                     if (listNode.getID() == 2) {
                         node02 = listNode;
                         break;
@@ -41,7 +40,7 @@ public final class Menu_1011050_1016662 {
                 }
 
                 if(node02 == null){
-                    System.out.println("To pirosvestiko kentro me ID 02 den iparxei sto WSNS");
+                    System.out.println("Fire Department with ID 02 does not exist WSNS");
                     return;
                 }
 
@@ -50,17 +49,17 @@ public final class Menu_1011050_1016662 {
                 break;
 
             case 3:
-                System.out.println("Eisagete ta stoixeia tou neou kovmou: (ID coordinatesX coordinatesY temperature)");
-                Node_1011050_1016662 insertedNode = new Node_1011050_1016662(scan.nextInt(), scan.nextInt(), scan.nextInt(), scan.nextInt());
+                System.out.println("Enter new node elements: (ID coordinatesX coordinatesY temperature)");
+                Node insertedNode = new Node(scan.nextInt(), scan.nextInt(), scan.nextInt(), scan.nextInt());
                 graph.insertNode(insertedNode);
                 graph.createMST();
                 break;
 
             case 4:
-                System.out.println("Eisagete to ID tou kovmou pou thelete na diagrapsete: ");
+                System.out.println("Give node ID you want to delete: ");
                 int idDel = scan.nextInt();
-                Node_1011050_1016662 nodeDel = null;
-                list = graph.getHashTable()[Graph_1011050_1016662.hashFunction(idDel,
+                Node nodeDel = null;
+                list = graph.getHashTable()[Graph.hashFunction(idDel,
                         graph.getLength())];
 
                 if (list == null) {
@@ -68,7 +67,7 @@ public final class Menu_1011050_1016662 {
                     return;
                 }
 
-                for (Node_1011050_1016662 listNode : list) {
+                for (Node listNode : list) {
                     if (listNode.getID() == idDel) {
                         nodeDel = listNode;
                         break;
@@ -86,18 +85,18 @@ public final class Menu_1011050_1016662 {
                 break;
 
             case 5:
-                System.out.print("Dose ID pirosvestikou kentrou: ");
+                System.out.print("Give fire department ID: ");
                 int idFireS = scan.nextInt();
 
-                list = graph.getHashTable()[Graph_1011050_1016662.hashFunction(idFireS, graph.getLength())];
-                Node_1011050_1016662 nodeFireS = null;
+                list = graph.getHashTable()[Graph.hashFunction(idFireS, graph.getLength())];
+                Node nodeFireS = null;
 
                 if (list == null) {
                     System.out.println("This ID does not exist.");
                     return;
                 }
 
-                for (Node_1011050_1016662 listNode : list) {
+                for (Node listNode : list) {
                     if (listNode.getID() == idFireS) {
                         nodeFireS = listNode;
                         break;
@@ -110,11 +109,11 @@ public final class Menu_1011050_1016662 {
                 }
 
                 if(!nodeFireS.isStation()){
-                    System.out.println("To ID den einai pirosvestikos stathmos.");
+                    System.out.println("This is not a fire department ID.");
                     return;
                 }
 
-                MST_1011050_1016662.DFS(graph.mst.getEdges(), idFireS);
+                MST.DFS(graph.mst.getEdges(), idFireS);
                 break;
 
             case 6:
@@ -124,7 +123,7 @@ public final class Menu_1011050_1016662 {
                 break;
 
             default:
-                System.out.println("Should never be inside this. cs.ac.ucy.cs.epl231.IDs1016662_1011050.homework3.Menu -> decideOperation");
+                System.out.println("Should never be inside this.");
                 break;
 
         }
@@ -138,16 +137,16 @@ public final class Menu_1011050_1016662 {
 
     // Setter method
     public static void setOption(int option) {
-        Menu_1011050_1016662.option = option;
+        Menu.option = option;
     }
 
 
     public static void printOptions() {
-        System.out.println("1) Ypoloogismos elaxistou gennitorikou dentrou tou grafou");
-        System.out.println("2) Ektiposi (kai oxi ipologismos) tou elaxistou genitorikou dentrou tou grafou");
-        System.out.println("3) Isagogi neou komvou(ID, coordinates, temperature)");
-        System.out.println("4) Apoxorisi komvou(ID)");
-        System.out.println("5) Enimerosi tou pirosvestikou kentrou A gia tin ipsiloteri thermokrasia tou diktiou");
+        System.out.println("1) Calculation of MST of graph");
+        System.out.println("2) Print and not calculation of MST of the graph");
+        System.out.println("3) Enter new node(ID, coordinates, temperature)");
+        System.out.println("4) Remove node(ID)");
+        System.out.println("5) Update fire department A for the highest temperature of the network");
         System.out.println("6) Exit");
         System.out.println("Please select an opperand.");
     }
