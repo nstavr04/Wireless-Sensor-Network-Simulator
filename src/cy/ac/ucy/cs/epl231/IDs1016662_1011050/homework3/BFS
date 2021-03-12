@@ -5,7 +5,7 @@ import java.util.Queue;
 /**
  * This method is used for the second option of the menu. Prints all
  * the MST tree using the BFS algorithm. This object uses only one class
- * that implement the printing of the tree given as a parameter.
+ * that implement the printing of the tree given as a parameter
  *
  * @author mvasil17, nstavr04
  */
