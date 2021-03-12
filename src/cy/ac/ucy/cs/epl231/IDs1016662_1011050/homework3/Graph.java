@@ -1,4 +1,3 @@
-package cy.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
 
 import java.io.*;
 import java.util.*;
@@ -12,7 +11,7 @@ import java.util.*;
  * @author mvasil17, nstavr04
  *
  */
-public class Graph_1011050_1016662 {
+public class Graph {
 
 
     private int vertices = 0;
@@ -34,7 +33,7 @@ public class Graph_1011050_1016662 {
     /**
      * MST tree created when asked by the user.
      */
-    public MST_1011050_1016662 mst;
+    public MST mst;
 
     /**
      * Constructor of the graph.
@@ -44,12 +43,12 @@ public class Graph_1011050_1016662 {
      *
      * @author mvasil17, nstavr04
      */
-    public Graph_1011050_1016662(int length, int dOfUser) {
+    public Graph(int length, int dOfUser) {
         this.hashTable = new LinkedList[length];
         this.length = length;
         this.d = dOfUser;
         for (int i = 0; i < length; i++)
-            hashTable[i] = new LinkedList<Node_1011050_1016662>();
+            hashTable[i] = new LinkedList<Node>();
     }
 
     /**
@@ -66,7 +65,7 @@ public class Graph_1011050_1016662 {
             fileReader = new Scanner(new File(fileName));
             fileReader.useDelimiter("[^0-9]+"); // keep only the digits of the file
             while (fileReader.hasNext()) {
-                Node_1011050_1016662 node = new Node_1011050_1016662(fileReader.nextInt(), fileReader.nextInt(), fileReader.nextInt(), fileReader.nextInt());
+                Node node = new Node(fileReader.nextInt(), fileReader.nextInt(), fileReader.nextInt(), fileReader.nextInt());
 //                System.out.println(node.getID() + " " +node.getCoordinateX() + " " + node.getCoordinateY() + " " + node.getTemperature());
                 insertNode(node);
             }
@@ -83,11 +82,11 @@ public class Graph_1011050_1016662 {
      *
      * @author mvasil17, nstavr04
      */
-    public void insertNode(Node_1011050_1016662 node) {
+    public void insertNode(Node node) {
         vertices++;
         hashTable[hashFunction(node.getID(), length)].addFirst(node);
         for (int i = 0; i < length; i++)
-            for (Node_1011050_1016662 neigh : hashTable[i]) {
+            for (Node neigh : hashTable[i]) {
                 if (node.getDistance(neigh) < d && (node.getID() != neigh.getID())) {
                     node.getNeighbors().addFirst(neigh);
                     neigh.getNeighbors().addFirst(node);
@@ -106,9 +105,9 @@ public class Graph_1011050_1016662 {
      *
      * @author mvasil17, nstavr04
      */
-    public void removeNode(Node_1011050_1016662 removeNode) {
-        for (Node_1011050_1016662 node : removeNode.getNeighbors()) {
-            LinkedList<Node_1011050_1016662> listCopy = (LinkedList<Node_1011050_1016662>) removeNode.getNeighbors().clone();
+    public void removeNode(Node removeNode) {
+        for (Node node : removeNode.getNeighbors()) {
+            LinkedList<Node> listCopy = (LinkedList<Node>) removeNode.getNeighbors().clone();
             for (int i = 0; i < listCopy.size(); i++) {
                 if (removeNode == listCopy.get(i)) {
                     node.getNeighbors().remove(i);
@@ -116,7 +115,7 @@ public class Graph_1011050_1016662 {
                 }
             }
         }
-        LinkedList<Node_1011050_1016662> listCopy2 = hashTable[hashFunction(removeNode.getID(), length)];
+        LinkedList<Node> listCopy2 = hashTable[hashFunction(removeNode.getID(), length)];
         for (int i = 0; i < listCopy2.size(); i++) {
             if (removeNode == listCopy2.get(i)) {
                 hashTable[hashFunction(removeNode.getID(), length)].remove(i);
@@ -131,7 +130,7 @@ public class Graph_1011050_1016662 {
      * @author mvasil17, nstavr04
      */
     public void createMST() {
-        this.mst = new MST_1011050_1016662(this);
+        this.mst = new MST(this);
     }
 
     /**
@@ -169,7 +168,7 @@ public class Graph_1011050_1016662 {
      * @return a list that indicates the hashTable.
      * @author mvasil17, nstavr04
      */
-    public LinkedList<Node_1011050_1016662>[] getHashTable() {
+    public LinkedList<Node>[] getHashTable() {
         return this.hashTable;
     }
 
@@ -180,7 +179,7 @@ public class Graph_1011050_1016662 {
      *
      * @author mvasil17, nstavr04
      */
-    public void setHashTable(LinkedList<Node_1011050_1016662>[] hashTable) {
+    public void setHashTable(LinkedList<Node>[] hashTable) {
         this.hashTable = hashTable;
     }
 
@@ -264,13 +263,13 @@ public class Graph_1011050_1016662 {
      */
     private void rehash() {
         this.length *= 10;
-        LinkedList<Node_1011050_1016662>[] hashTemp = hashTable;
+        LinkedList<Node>[] hashTemp = hashTable;
         hashTable = new LinkedList[length];
         for (int i = 0; i < length; i++)
-            hashTable[i] = new LinkedList<Node_1011050_1016662>();
+            hashTable[i] = new LinkedList<Node>();
 
-        for (LinkedList<Node_1011050_1016662> node_1011050_1016662s : hashTemp) {
-            for (Node_1011050_1016662 node : node_1011050_1016662s) {
+        for (LinkedList<Node> nodes : hashTemp) {
+            for (Node node : nodes) {
                 insertNode(node);
             }
         }
