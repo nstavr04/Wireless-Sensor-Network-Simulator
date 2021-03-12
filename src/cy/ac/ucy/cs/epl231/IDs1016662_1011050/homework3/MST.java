@@ -1,4 +1,3 @@
-package cy.ac.ucy.cs.epl231.IDs1016662_1011050.homework3;
 
 import java.util.*;
 import java.lang.*;;
@@ -7,12 +6,12 @@ import java.lang.*;;
  * This class is used to create the mst of a graph given.
  * @author mvasil17, nstavr04
  */
-public class MST_1011050_1016662 {
+public class MST {
 
     /**
      * This is the list of the edges that represent the mst tree.
      */
-    private ArrayList<Edge_1011050_1016662> edges = new ArrayList<Edge_1011050_1016662>();
+    private ArrayList<Edge> edges = new ArrayList<Edge>();
 
     /**
      * This is the constructor of the mst tree.
@@ -20,7 +19,7 @@ public class MST_1011050_1016662 {
      * @param graph whose mst is going to be created
      * @author mvasil17, nstavr04
      */
-    public MST_1011050_1016662(Graph_1011050_1016662 graph) {
+    public MST(Graph graph) {
         Prim(graph);    //Run Prim's algorithm to construct the MST tree
     }
 
@@ -31,13 +30,13 @@ public class MST_1011050_1016662 {
      * @param graph the graph given as parameter
      * @author mvasil17, nstavr04
      */
-    private void Prim(Graph_1011050_1016662 graph) {
+    private void Prim(Graph graph) {
 
         int counter = 0;
-        Node_1011050_1016662[] idsTable = new Node_1011050_1016662[graph.getVertices()];
+        Node[] idsTable = new Node[graph.getVertices()];
 
         for (int i = 0; i < graph.getLength(); i++) {
-            for (Node_1011050_1016662 node : graph.getHashTable()[i]) {
+            for (Node node : graph.getHashTable()[i]) {
                 idsTable[counter] = node;
                 counter++;
             }
@@ -49,7 +48,7 @@ public class MST_1011050_1016662 {
 
         Arrays.fill(visited, false);
 
-        Node_1011050_1016662[] closestD = new Node_1011050_1016662[graph.getVertices()];
+        Node[] closestD = new Node[graph.getVertices()];
 
         Arrays.fill(closestD, null);    // A method to initialize all the distance table
 
@@ -71,15 +70,15 @@ public class MST_1011050_1016662 {
 
         int index = 0;
         visited[index] = true;
-        Node_1011050_1016662 v = idsTable[index];
+        Node v = idsTable[index];
 
         for (int i = 0; i < graph.getVertices(); i++) {
 
-            for (Node_1011050_1016662 w : v.getNeighbors()) {
+            for (Node w : v.getNeighbors()) {
                 int pos = position(w, idsTable);
                 if (pos == -1)
                     continue;
-                Edge_1011050_1016662 edge = new Edge_1011050_1016662(v, w);
+                Edge edge = new Edge(v, w);
                 if (edge.getWeight() < distance[pos] && edge.getWeight() < graph.getD()) {
                     distance[pos] = (int)edge.getWeight();
                     closestD[pos] = v;
@@ -90,7 +89,7 @@ public class MST_1011050_1016662 {
             if (index == -1)
                 break;
             visited[index] = true;
-            edges.add(new Edge_1011050_1016662(idsTable[index], closestD[index]));
+            edges.add(new Edge(idsTable[index], closestD[index]));
             v = idsTable[index];
         }
 
@@ -102,9 +101,9 @@ public class MST_1011050_1016662 {
      * @param starts the starting point
      * @author mvasil17, nstavr04
      */
-    public static void DFS(ArrayList<Edge_1011050_1016662> list, int starts) {
+    public static void DFS(ArrayList<Edge> list, int starts) {
         Stack<Integer> stack = new Stack<>();
-        ArrayList<Edge_1011050_1016662> listCopy = (ArrayList<Edge_1011050_1016662>) list.clone();
+        ArrayList<Edge> listCopy = (ArrayList<Edge>) list.clone();
         stack.push(starts);
         int maxTemp = Integer.MIN_VALUE;
         while (!stack.isEmpty() && listCopy.size() != 0) {
@@ -149,7 +148,7 @@ public class MST_1011050_1016662 {
      * @return the position of node in the id array
      * @author mvasil17, nstavr04
      */
-    private static int position(Node_1011050_1016662 NodeTBF, Node_1011050_1016662[] id) {
+    private static int position(Node NodeTBF, Node[] id) {
         if (NodeTBF != null && id != null)
             for (int i = 0; i < id.length; i++) {
                 if (id[i] != null)
@@ -161,11 +160,11 @@ public class MST_1011050_1016662 {
         return -1;
     }
 
-    public void setEdges(ArrayList<Edge_1011050_1016662> edges) {
+    public void setEdges(ArrayList<Edge> edges) {
         this.edges = edges;
     }
 
-    public ArrayList<Edge_1011050_1016662> getEdges() {
+    public ArrayList<Edge> getEdges() {
         return edges;
     }
 
@@ -178,7 +177,7 @@ public class MST_1011050_1016662 {
      * @return min The minimum distance
      * @author mvasil17, nstavr04
      */
-    public int minVertex(Graph_1011050_1016662 graph, boolean[] visited, double[] distance) {
+    public int minVertex(Graph graph, boolean[] visited, double[] distance) {
         int min = -1;
         double minimum = Double.MAX_VALUE;
         for (int i = 0; i < graph.getVertices(); i++) {
